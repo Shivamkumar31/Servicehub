@@ -1,100 +1,223 @@
-// src/data/mockData.js
+// src/data/mockdata.js
 import {
   FaTools,
   FaGraduationCap,
   FaPaw,
   FaCamera,
-  FaCalendarAlt,
   FaStar,
 } from "react-icons/fa";
 
-// Categories based on the image (even the unusual ones)
 export const categories = [
   {
-    name: "Home Repair",
+    name: "Plumbing",
     icon: FaTools,
     color: "bg-blue-100",
     iconColor: "text-blue-600",
+    description: "Pipes • Leaks • Bathroom",
   },
   {
-    name: "Tukang", // This could mean "Handyman" or "Tutor"
-    icon: FaGraduationCap,
+    name: "Electrician",
+    icon: FaTools,
     color: "bg-yellow-100",
     iconColor: "text-yellow-600",
+    description: "Wiring • Fans • Lights",
+  },
+  {
+    name: "Carpentry",
+    icon: FaTools,
+    color: "bg-red-100",
+    iconColor: "text-red-600",
+    description: "Furniture • Doors • Repair",
+  },
+  {
+    name: "Tutoring",
+    icon: FaGraduationCap,
+    color: "bg-purple-100",
+    iconColor: "text-purple-600",
+    description: "Maths • Science • Home Tutor",
+  },
+  {
+    name: "Photography",
+    icon: FaCamera,
+    color: "bg-green-100",
+    iconColor: "text-green-600",
+    description: "Events • Portrait • Product",
   },
   {
     name: "Pet Care",
     icon: FaPaw,
-    color: "bg-red-100",
-    iconColor: "text-red-600",
-  },
-  {
-    name: "Pet Care", // Second "Pet Care" as in the image
-    icon: FaCamera,
-    color: "bg-green-100",
-    iconColor: "text-green-600",
-  },
-  {
-    name: "Photography", // "Photography" with calendar icon as in image
-    icon: FaCalendarAlt,
-    color: "bg-purple-100",
-    iconColor: "text-purple-600",
+    color: "bg-pink-100",
+    iconColor: "text-pink-600",
+    description: "Grooming • Walking • Care",
   },
 ];
 
-// Star icon for ratings
 export const StarIcon = FaStar;
 
-// Featured services
+
 export const services = [
+  // 🔧 PLUMBING
   {
     id: 1,
     title: "Plumbing Fixes",
+    category: "Plumbing",
     rating: 5,
-    reviews: 9,
-    image: "https://images.unsplash.com/photo-1505798020935-649a54165692?w=400&q=80",
+    reviews: 12,
+    image: "https://images.unsplash.com/photo-1581092334625-82da89b6cf5b?w=800&q=80",
   },
   {
     id: 2,
-    title: "Kitchen Plumbing",
-    rating: 5,
+    title: "Bathroom Leak Repair",
+    category: "Plumbing",
+    rating: 4.8,
     reviews: 9,
-    image: "https://images.unsplash.com/photo-1600585154341-9ebc3d0d0324?w=400&q=80",
+    image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80",
   },
   {
     id: 3,
-    title: "Photography",
-    rating: 5,
-    reviews: 9,
-    image: "https://images.unsplash.com/photo-1519638831568-d989787bf6ca?w=400&q=80",
+    title: "Kitchen Sink Installation",
+    category: "Plumbing",
+    rating: 4.9,
+    reviews: 14,
+    image: "https://images.unsplash.com/photo-1558611848-73f7eb4001a1?w=800&q=80",
   },
+
+  // ⚡ ELECTRICIAN
   {
     id: 4,
-    title: "Plumbing Tools",
+    title: "Electric Repair",
+    category: "Electrician",
     rating: 5,
-    reviews: 9,
-    image: "https://images.unsplash.com/photo-1587711453214-c43232029307?w=400&q=80",
+    reviews: 10,
+    image: "https://images.unsplash.com/photo-1581092918387-6a6c7c3fa2fd?w=800&q=80",
   },
-  // --- NEW DATA ADDED BELOW ---
   {
     id: 5,
-    title: "Dog Grooming",
-    rating: 4,
-    reviews: 12,
-    image: "https://images.unsplash.com/photo-1590812803866-3f2f36f453b3?w=400&q=80",
+    title: "Fan & Light Installation",
+    category: "Electrician",
+    rating: 4.7,
+    reviews: 8,
+    image: "https://images.unsplash.com/photo-1600474661221-8d967b960c73?w=800&q=80",
   },
   {
     id: 6,
-    title: "Math Tutoring",
-    rating: 5,
-    reviews: 7,
-    image: "https://images.unsplash.com/photo-1596495577886-d923f042a345?w=400&q=80",
+    title: "Complete Wiring Check",
+    category: "Electrician",
+    rating: 4.9,
+    reviews: 15,
+    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80",
   },
+
+  // 🪚 CARPENTRY
   {
     id: 7,
-    title: "Carpentry",
+    title: "Furniture Repair",
+    category: "Carpentry",
+    rating: 4.9,
+    reviews: 11,
+    image: "https://images.unsplash.com/photo-1505852402381-9a8d0e1dfbcf?w=800&q=80",
+  },
+  {
+    id: 8,
+    title: "Door & Window Work",
+    category: "Carpentry",
+    rating: 4.8,
+    reviews: 7,
+    image: "https://images.unsplash.com/photo-1600573472591-ee6981cf6fb0?w=800&q=80",
+  },
+  {
+    id: 9,
+    title: "Custom Wood Furniture",
+    category: "Carpentry",
     rating: 5,
-    reviews: 15,
-    image: "https://images.unsplash.com/photo-1579951663144-8add6ac8d447?w=400&q=80",
+    reviews: 6,
+    image: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=800&q=80",
+  },
+
+  // 📚 TUTORING
+  {
+    id: 10,
+    title: "Math Home Tutoring",
+    category: "Tutoring",
+    rating: 5,
+    reviews: 19,
+    image: "https://images.unsplash.com/photo-1584697964154-8f8b47d6a36b?w=800&q=80",
+  },
+  {
+    id: 11,
+    title: "Science Coaching",
+    category: "Tutoring",
+    rating: 4.8,
+    reviews: 13,
+    image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80",
+  },
+  {
+    id: 12,
+    title: "Private Home Tutor",
+    category: "Tutoring",
+    rating: 4.9,
+    reviews: 10,
+    image: "https://images.unsplash.com/photo-1588702547954-48027cbe7bb3?w=800&q=80",
+  },
+
+  // 📸 PHOTOGRAPHY
+  {
+    id: 13,
+    title: "Event Photography",
+    category: "Photography",
+    rating: 5,
+    reviews: 22,
+    image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80",
+  },
+  {
+    id: 14,
+    title: "Portrait Photography",
+    category: "Photography",
+    rating: 4.9,
+    reviews: 16,
+    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&q=80",
+  },
+  {
+    id: 15,
+    title: "Product Photography",
+    category: "Photography",
+    rating: 4.8,
+    reviews: 9,
+    image: "https://images.unsplash.com/photo-1495567720989-cebdbdd97913?w=800&q=80",
+  },
+
+  // 🐾 PET CARE
+  {
+    id: 16,
+    title: "Dog Grooming",
+    category: "Pet Care",
+    rating: 4.9,
+    reviews: 18,
+    image: "https://images.unsplash.com/photo-1517849845537-4d257902454a?w=800&q=80",
+  },
+  {
+    id: 17,
+    title: "Pet Walking Services",
+    category: "Pet Care",
+    rating: 4.7,
+    reviews: 11,
+    image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80",
+  },
+  {
+    id: 18,
+    title: "Pet Health Check",
+    category: "Pet Care",
+    rating: 4.8,
+    reviews: 7,
+    image: "https://images.unsplash.com/photo-1558944351-cfa947d9d8c5?w=800&q=80",
   },
 ];
+
+
+
+
+
+
+
+
+

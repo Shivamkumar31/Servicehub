@@ -1,32 +1,33 @@
 // src/components/Categories.jsx
 import React from "react";
-import { categories } from "../data/mockData";
+import { categories } from "../data/mockdata";
 
-const Categories = () => {
+const Categories = ({ onSelectCategory }) => {
   return (
-    <div className="py-4">
-      {/* CHANGED: Changed 'justify-center' to 'justify-start' 
-        to align the icons to the left.
-      */}
-      <div className="flex justify-start items-center space-x-4 md:space-x-8 overflow-x-auto pb-4">
-        {categories.map((category, index) => {
-          const Icon = category.icon;
+    <div className="py-6">
+      <div className="flex gap-6 overflow-x-auto">
+
+        {categories.map((cat, index) => {
+          const Icon = cat.icon;
           return (
             <div
               key={index}
-              className="flex flex-col items-center flex-shrink-0 w-24 text-center group"
+              onClick={() => onSelectCategory(cat.name)}
+              className="flex flex-col items-center cursor-pointer group hover:scale-105 transition"
             >
-              <div
-                className={`w-12 h-12 rounded-full flex items-center justify-center ${category.color} mb-2 group-hover:shadow-lg transition-shadow`}
-              >
-                <Icon className={`w-6 h-6 ${category.iconColor}`} />
+              <div className={`w-14 h-14 rounded-full flex items-center justify-center ${cat.color}`}>
+                <Icon className={`w-7 h-7 ${cat.iconColor}`} />
               </div>
-              <p className="text-xs font-medium text-gray-700">
-                {category.name}
+
+              <p className="text-sm font-semibold mt-2">{cat.name}</p>
+
+              <p className="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition">
+                {cat.description}
               </p>
             </div>
           );
         })}
+
       </div>
     </div>
   );

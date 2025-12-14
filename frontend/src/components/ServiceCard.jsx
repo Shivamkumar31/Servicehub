@@ -1,6 +1,6 @@
 // src/components/ServiceCard.jsx
 import React from "react";
-import { StarIcon } from "../data/mockData";
+import { StarIcon } from "../data/mockdata";
 
 const ServiceCard = ({ service }) => {
   return (

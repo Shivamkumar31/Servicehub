@@ -1,0 +1,32 @@
+{
+  "Plumbing": [],
+  "Electrician": [],
+  "Carpentry": [
+    {
+      "id": 1765625716891,
+      "name": "SHIVAM KUMAR",
+      "phone": "9508280822",
+      "category": "Carpentry",
+      "experience": "7",
+      "address": "kerla ,kottayam",
+      "lat": 25.4869504,
+      "lng": 85.3868544,
+      "createdAt": "2025-12-13T11:35:16.891Z"
+    }
+  ],
+  "Tutoring": [
+    {
+      "id": 1765748312100,
+      "name": "SHIVAM KUMAR",
+      "phone": "09508280828",
+      "category": "Tutoring",
+      "experience": "j",
+      "address": "kerla ,kottayam",
+      "lat": 25.4869504,
+      "lng": 85.3868544,
+      "createdAt": "2025-12-14T21:38:32.100Z"
+    }
+  ],
+  "Photography": [],
+  "Pet Care": []
+}
