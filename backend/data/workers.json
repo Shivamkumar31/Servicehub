@@ -1,32 +1,146 @@
 {
-  "Plumbing": [],
-  "Electrician": [],
+  "Plumbing": [
+    {
+      "id": 1767444863617,
+      "name": "dilip kumar ",
+      "phone": "7082099307",
+      "category": "Plumbing",
+      "experience": "2",
+      "address": "Rajgir, Nalanda, Bihar, 803117, India",
+      "lat": 25.0299973,
+      "lng": 85.4207368,
+      "photo": "/uploads/1767444863613.jpeg",
+      "createdAt": "2026-01-03T12:54:23.617Z"
+    },
+    {
+      "id": 1767459792514,
+      "name": "golu",
+      "phone": "9508280824",
+      "category": "Plumbing",
+      "experience": "2",
+      "address": "Bhagal, Guhla, Kaithal, Haryana, India",
+      "lat": 30.0670513,
+      "lng": 76.4172935,
+      "photo": "/uploads/1767459792510.jpeg",
+      "createdAt": "2026-01-03T17:03:12.514Z"
+    },
+    {
+      "id": 1767459857799,
+      "name": "pirya23",
+      "phone": "9508280825",
+      "category": "Plumbing",
+      "experience": "3",
+      "address": "Bhagalpur, Bihar, India",
+      "lat": 25.2861354,
+      "lng": 87.1304229,
+      "photo": "/uploads/1767459857796.jpeg",
+      "createdAt": "2026-01-03T17:04:17.799Z"
+    }
+  ],
+  "Electrician": [
+    {
+      "id": 1767444790324,
+      "name": "deepak",
+      "phone": "7082099308",
+      "category": "Electrician",
+      "experience": "2",
+      "address": "Khusrupur, Patna, Bihar, 803202, India",
+      "lat": 25.4554187,
+      "lng": 85.3710773,
+      "photo": "/uploads/1767444790313.jpeg",
+      "createdAt": "2026-01-03T12:53:10.324Z"
+    }
+  ],
   "Carpentry": [
     {
-      "id": 1765625716891,
-      "name": "SHIVAM KUMAR",
+      "id": 1767358496628,
+      "name": "shivam kumar ",
       "phone": "9508280822",
       "category": "Carpentry",
-      "experience": "7",
-      "address": "kerla ,kottayam",
-      "lat": 25.4869504,
-      "lng": 85.3868544,
-      "createdAt": "2025-12-13T11:35:16.891Z"
+      "experience": "3",
+      "address": "Patna, Patna Rural, Patna, Bihar, 800001, India",
+      "lat": 25.6093239,
+      "lng": 85.1235252,
+      "photo": "/uploads/1767358496596.jpeg",
+      "createdAt": "2026-01-02T12:54:56.629Z"
+    },
+    {
+      "id": 1767444969184,
+      "name": "danish",
+      "phone": "7082099306",
+      "category": "Carpentry",
+      "experience": "3",
+      "address": "Nalanda, Bihar, India",
+      "lat": 25.211599,
+      "lng": 85.4484611,
+      "photo": "/uploads/1767444969179.jpeg",
+      "createdAt": "2026-01-03T12:56:09.184Z"
     }
   ],
   "Tutoring": [
     {
-      "id": 1765748312100,
-      "name": "SHIVAM KUMAR",
-      "phone": "09508280828",
+      "id": 1767380510145,
+      "name": "kajal kumari",
+      "phone": "9508280820",
       "category": "Tutoring",
-      "experience": "j",
-      "address": "kerla ,kottayam",
-      "lat": 25.4869504,
-      "lng": 85.3868544,
-      "createdAt": "2025-12-14T21:38:32.100Z"
+      "experience": "6",
+      "address": "Gaya, Bihar, India",
+      "lat": 24.679389,
+      "lng": 85.0115833,
+      "photo": "/uploads/1767380510122.jpg",
+      "createdAt": "2026-01-02T19:01:50.145Z"
+    },
+    {
+      "id": 1767382846978,
+      "name": "ramu",
+      "phone": "9508280821",
+      "category": "Tutoring",
+      "experience": "4",
+      "address": "Bhagalpur, Bihar, India",
+      "lat": 25.2861354,
+      "lng": 87.1304229,
+      "photo": "/uploads/1767382846970.jpeg",
+      "createdAt": "2026-01-02T19:40:46.978Z"
     }
   ],
-  "Photography": [],
-  "Pet Care": []
+  "Photography": [
+    {
+      "id": 1767458367781,
+      "name": "golu kumar ",
+      "phone": "9508280223",
+      "category": "Photography",
+      "experience": "1",
+      "address": "Kolkata, West Bengal, India",
+      "lat": 22.5726459,
+      "lng": 88.3638953,
+      "photo": "/uploads/1767458367774.jpeg",
+      "createdAt": "2026-01-03T16:39:27.781Z"
+    },
+    {
+      "id": 1767461170728,
+      "name": "manyaln",
+      "phone": "9508280827",
+      "category": "Photography",
+      "experience": "1",
+      "address": "Pune, Pune City, Pune District, Maharashtra, 411001, India",
+      "lat": 18.5213738,
+      "lng": 73.8545071,
+      "photo": "/uploads/1767461170719.png",
+      "createdAt": "2026-01-03T17:26:10.728Z"
+    }
+  ],
+  "Pet Care": [
+    {
+      "id": 1767457843092,
+      "name": "vishal",
+      "phone": "7082099305",
+      "category": "Pet Care",
+      "experience": "7",
+      "address": "Gya, Leh district, India",
+      "lat": 33.6530491,
+      "lng": 77.7351649,
+      "photo": "/uploads/1767457843087.jpeg",
+      "createdAt": "2026-01-03T16:30:43.092Z"
+    }
+  ]
 }

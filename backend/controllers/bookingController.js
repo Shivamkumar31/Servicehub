@@ -24,25 +24,53 @@ const writeBookings = (data) => {
 
 // ✅ CREATE BOOKING
 exports.createBooking = (req, res) => {
-  const {userId, workerId, workerName, date, time, address } = req.body;
+  const {
+    userId,
+    workerId,
+    workerName,
+    date,
+    time,
+    address,
+    lat,
+    lng,
+    notes,
+    image,
+  } = req.body;
 
-  if (!workerId || !workerName || !date || !time || !address) {
-    return res.status(400).json({ message: "Missing required fields" });
+  // 🔴 IMPORTANT VALIDATION
+  if (
+    !userId ||
+    !workerId ||
+    !workerName ||
+    !date ||
+    !time ||
+    !address ||
+    lat === undefined ||
+    lng === undefined
+  ) {
+    return res.status(400).json({
+      success: false,
+      message: "Missing required fields",
+    });
   }
 
   const bookings = readBookings();
 
   const newBooking = {
     id: Date.now(),
-    
-          userId,              // ✅ STORED
+    userId,
     workerId,
     workerName,
     date,
     time,
     address,
-    notes: req.body.notes || "",
-    image: req.body.image || null,
+
+    // ✅ STORE LOCATION (FOR DISTANCE)
+    lat: parseFloat(lat),
+    lng: parseFloat(lng),
+
+    notes: notes || "",
+    image: image || null,
     status: "PENDING",
     createdAt: new Date().toISOString(),
   };
@@ -56,9 +84,6 @@ exports.createBooking = (req, res) => {
   });
 };
 
-
-
-
 // ✅ UPDATE BOOKING STATUS
 exports.updateBookingStatus = (req, res) => {
   const { bookingId } = req.params;
@@ -69,7 +94,7 @@ exports.updateBookingStatus = (req, res) => {
   }
 
   const bookings = readBookings();
-  const index = bookings.findIndex(b => b.id == bookingId);
+  const index = bookings.findIndex((b) => b.id == bookingId);
 
   if (index === -1) {
     return res.status(404).json({ message: "Booking not found" });
@@ -87,12 +112,12 @@ exports.updateBookingStatus = (req, res) => {
   });
 };
 
-// ✅ GET booking by ID (FOR USER DASHBOARD)
+// ✅ GET BOOKING BY ID
 exports.getBookingById = (req, res) => {
   const { bookingId } = req.params;
   const bookings = readBookings();
 
-  const booking = bookings.find(b => b.id == bookingId);
+  const booking = bookings.find((b) => b.id == bookingId);
 
   if (!booking) {
     return res.status(404).json({ message: "Booking not found" });
@@ -100,8 +125,6 @@ exports.getBookingById = (req, res) => {
 
   res.json(booking);
 };
-
-
 
 // ✅ GET BOOKINGS FOR A WORKER
 exports.getBookingsByWorker = (req, res) => {
@@ -114,6 +137,7 @@ exports.getBookingsByWorker = (req, res) => {
 
   res.json(workerBookings);
 };
+
 // ✅ GET BOOKINGS FOR USER
 exports.getBookingsByUser = (req, res) => {
   const { userId } = req.params;
@@ -125,5 +149,3 @@ exports.getBookingsByUser = (req, res) => {
 
   res.json(userBookings);
 };
-
-

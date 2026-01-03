@@ -1,16 +1,32 @@
 [
   {
-    "id": 1765749374611,
+    "id": 1767381403995,
+    "email": "shivam23bcy55@iiitkottayam.ac.in",
+    "password": "123456",
+    "username": "shiv",
+    "address": "Delhi, India",
+    "lat": "28.6328027",
+    "lng": "77.2197713",
+    "createdAt": "2026-01-02T19:16:43.995Z"
+  },
+  {
+    "id": 1767381466718,
     "email": "shivamgolu@gmail.com",
     "password": "1234",
     "username": "shiv",
-    "createdAt": "2025-12-14T21:56:14.611Z"
+    "address": "Pune, Pune City, Pune District, Maharashtra, 411001, India",
+    "lat": "18.5213738",
+    "lng": "73.8545071",
+    "createdAt": "2026-01-02T19:17:46.718Z"
   },
   {
-    "id": 1765750014971,
+    "id": 1767461686667,
     "email": "shivamgolu1@gmail.com",
-    "password": "0000",
+    "password": "1234",
     "username": "shiv",
-    "createdAt": "2025-12-14T22:06:54.971Z"
+    "address": "Pune, Pune City, Pune District, Maharashtra, 411001, India",
+    "lat": "18.5213738",
+    "lng": "73.8545071",
+    "createdAt": "2026-01-03T17:34:46.667Z"
   }
 ]

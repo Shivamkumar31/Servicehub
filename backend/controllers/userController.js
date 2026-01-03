@@ -18,11 +18,15 @@ const writeUsers = (data) => {
 // ------------------------------------
 // REGISTER USER
 // ------------------------------------
-exports.registerUser = (req, res) => {
-  const { email, password } = req.body;
 
-  if (!email || !password) {
-    return res.status(400).json({ success: false, message: "All fields required" });
+exports.registerUser = (req, res) => {
+  const { email, password, address, lat, lng } = req.body;
+
+  if (!email || !password || !address || !lat || !lng) {
+    return res.status(400).json({
+      success: false,
+      message: "All fields required",
+    });
   }
 
   const users = readUsers();
@@ -39,7 +43,10 @@ exports.registerUser = (req, res) => {
     email,
     password,
     username,
-    createdAt: new Date().toISOString()
+    address,
+    lat,
+    lng,
+    createdAt: new Date().toISOString(),
   };
 
   users.push(newUser);
