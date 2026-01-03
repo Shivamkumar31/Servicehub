@@ -1,22 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
+import { useParams, useNavigate } from "react-router-dom";
+const API = import.meta.env.VITE_API_URL;
 const UserDashboard = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+
   const user = JSON.parse(localStorage.getItem("loggedUser"));
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-  fetch(`http://localhost:5000/bookings/user/${id}`)
-    .then(res => res.json())
-    .then(setBookings);
-}, [id]);
+    if (!user) {
+      navigate("/login-user");
+      return;
+    }
 
+    fetch(`${API}/bookings/user/${id}`)
+      .then((res) => res.json())
+      .then(setBookings)
+      .catch(console.error);
+  }, [id, navigate, user]);
 
+  // ✅ FIXED LOGOUT
   const logout = () => {
     localStorage.removeItem("loggedUser");
-    window.location.href = "/";
+
+    // 🔴 IMPORTANT: remove search location too
+    localStorage.removeItem("searchLat");
+    localStorage.removeItem("searchLng");
+
+    // ✅ FORCE FULL RESET
+    window.location.replace("/login-user");
   };
+
+  const displayName = user?.email
+    ? user.email.split("@")[0]
+    : "User";
+
+  const avatarLetter = displayName.charAt(0).toUpperCase();
 
   return (
     <div className="flex container mx-auto mt-6 gap-6">
@@ -25,15 +45,20 @@ const UserDashboard = () => {
       <div className="w-1/4 bg-white shadow rounded p-4">
         <div className="flex items-center gap-3 mb-6">
           <div className="w-12 h-12 rounded-full bg-yellow-500 text-white flex items-center justify-center text-xl">
-            {user.username[0].toUpperCase()}
+            {avatarLetter}
           </div>
           <div>
             <p className="text-sm">Hello,</p>
-            <p className="font-bold">{user.username}</p>
+            <p className="font-bold">{displayName}</p>
           </div>
         </div>
 
-        <button onClick={logout} className="text-red-600">Logout</button>
+        <button
+          onClick={logout}
+          className="text-red-600 hover:underline"
+        >
+          Logout
+        </button>
       </div>
 
       {/* RIGHT */}
@@ -43,7 +68,7 @@ const UserDashboard = () => {
         {bookings.length === 0 ? (
           <p>No bookings yet</p>
         ) : (
-          bookings.map(b => (
+          bookings.map((b) => (
             <div key={b.id} className="border p-4 mb-3 rounded">
               <p><b>Worker:</b> {b.workerName}</p>
               <p><b>Status:</b> {b.status}</p>

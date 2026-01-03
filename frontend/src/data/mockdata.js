@@ -55,15 +55,17 @@ export const categories = [
 export const StarIcon = FaStar;
 
 
-export const services = [
+export const services = 
   // 🔧 PLUMBING
+  
+[
   {
     id: 1,
     title: "Plumbing Fixes",
     category: "Plumbing",
     rating: 5,
     reviews: 12,
-    image: "https://images.unsplash.com/photo-1581092334625-82da89b6cf5b?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
   },
   {
     id: 2,
@@ -71,7 +73,7 @@ export const services = [
     category: "Plumbing",
     rating: 4.8,
     reviews: 9,
-    image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
   },
   {
     id: 3,
@@ -79,34 +81,34 @@ export const services = [
     category: "Plumbing",
     rating: 4.9,
     reviews: 14,
-    image: "https://images.unsplash.com/photo-1558611848-73f7eb4001a1?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1598300056393-4aac492f4344?w=800&q=80",
   },
 
   // ⚡ ELECTRICIAN
   {
-    id: 4,
-    title: "Electric Repair",
-    category: "Electrician",
-    rating: 5,
-    reviews: 10,
-    image: "https://images.unsplash.com/photo-1581092918387-6a6c7c3fa2fd?w=800&q=80",
-  },
-  {
-    id: 5,
-    title: "Fan & Light Installation",
-    category: "Electrician",
-    rating: 4.7,
-    reviews: 8,
-    image: "https://images.unsplash.com/photo-1600474661221-8d967b960c73?w=800&q=80",
-  },
-  {
-    id: 6,
-    title: "Complete Wiring Check",
-    category: "Electrician",
-    rating: 4.9,
-    reviews: 15,
-    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80",
-  },
+  id: 4,
+  title: "Electric Repair",
+  category: "Electrician",
+  rating: 5,
+  reviews: 10,
+  image: "https://images.unsplash.com/photo-1581092918387-6a6c7c3fa2fd?auto=format&fit=crop&w=800&q=80",
+},
+{
+  id: 5,
+  title: "Fan & Light Installation",
+  category: "Electrician",
+  rating: 4.7,
+  reviews: 8,
+  image: "https://images.unsplash.com/photo-1600474661221-8d967b960c73?auto=format&fit=crop&w=800&q=80",
+},
+{
+  id: 6,
+  title: "Complete Wiring Check",
+  category: "Electrician",
+  rating: 4.9,
+  reviews: 15,
+  image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=800&q=80",
+},
 
   // 🪚 CARPENTRY
   {
@@ -115,7 +117,7 @@ export const services = [
     category: "Carpentry",
     rating: 4.9,
     reviews: 11,
-    image: "https://images.unsplash.com/photo-1505852402381-9a8d0e1dfbcf?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=800&q=80",
   },
   {
     id: 8,
@@ -123,7 +125,7 @@ export const services = [
     category: "Carpentry",
     rating: 4.8,
     reviews: 7,
-    image: "https://images.unsplash.com/photo-1600573472591-ee6981cf6fb0?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
   },
   {
     id: 9,
@@ -131,7 +133,7 @@ export const services = [
     category: "Carpentry",
     rating: 5,
     reviews: 6,
-    image: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=800&q=80",
   },
 
   // 📚 TUTORING
@@ -141,7 +143,7 @@ export const services = [
     category: "Tutoring",
     rating: 5,
     reviews: 19,
-    image: "https://images.unsplash.com/photo-1584697964154-8f8b47d6a36b?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80",
   },
   {
     id: 11,
@@ -149,7 +151,7 @@ export const services = [
     category: "Tutoring",
     rating: 4.8,
     reviews: 13,
-    image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80",
   },
   {
     id: 12,
@@ -157,7 +159,7 @@ export const services = [
     category: "Tutoring",
     rating: 4.9,
     reviews: 10,
-    image: "https://images.unsplash.com/photo-1588702547954-48027cbe7bb3?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1588072432836-e10032774350?w=800&q=80",
   },
 
   // 📸 PHOTOGRAPHY
@@ -167,7 +169,7 @@ export const services = [
     category: "Photography",
     rating: 5,
     reviews: 22,
-    image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=800&q=80",
   },
   {
     id: 14,
@@ -175,7 +177,7 @@ export const services = [
     category: "Photography",
     rating: 4.9,
     reviews: 16,
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80",
   },
   {
     id: 15,
@@ -183,7 +185,7 @@ export const services = [
     category: "Photography",
     rating: 4.8,
     reviews: 9,
-    image: "https://images.unsplash.com/photo-1495567720989-cebdbdd97913?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800&q=80",
   },
 
   // 🐾 PET CARE
@@ -193,7 +195,7 @@ export const services = [
     category: "Pet Care",
     rating: 4.9,
     reviews: 18,
-    image: "https://images.unsplash.com/photo-1517849845537-4d257902454a?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=800&q=80",
   },
   {
     id: 17,
@@ -201,7 +203,7 @@ export const services = [
     category: "Pet Care",
     rating: 4.7,
     reviews: 11,
-    image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1507146426996-ef05306b995a?w=800&q=80",
   },
   {
     id: 18,
@@ -209,13 +211,9 @@ export const services = [
     category: "Pet Care",
     rating: 4.8,
     reviews: 7,
-    image: "https://images.unsplash.com/photo-1558944351-cfa947d9d8c5?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=800&q=80",
   },
 ];
-
-
-
-
 
 
 

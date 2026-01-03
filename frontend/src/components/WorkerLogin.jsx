@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+const API = import.meta.env.VITE_API_URL;
 const WorkerLogin = () => {
   const [phone, setPhone] = useState("");
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const WorkerLogin = () => {
       return;
     }
 
-    const res = await fetch("http://localhost:5000/workers/login", {
+    const res = await fetch(`${API}/workers/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ phone }),

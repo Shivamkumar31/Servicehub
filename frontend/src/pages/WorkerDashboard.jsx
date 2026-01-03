@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+    const API = import.meta.env.VITE_API_URL;
 
 const WorkerDashboard = () => {
   const { workerId } = useParams();
@@ -9,8 +10,9 @@ const WorkerDashboard = () => {
 
   // Fetch worker bookings
   const fetchBookings = async () => {
+   
     const res = await fetch(
-      `http://localhost:5000/bookings/worker/${workerId}`
+      `${API}/bookings/worker/${workerId}`
     );
     const data = await res.json();
     setBookings(data);
@@ -27,7 +29,7 @@ const WorkerDashboard = () => {
 
   // Accept / Reject handler
   const updateStatus = async (bookingId, status) => {
-    await fetch(`http://localhost:5000/bookings/${bookingId}/status`, {
+    await fetch(`${API}/bookings/${bookingId}/status`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status }),

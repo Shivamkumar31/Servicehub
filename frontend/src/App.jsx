@@ -9,14 +9,15 @@ import WorkerList from "./components/WorkerList";
 import BookingForm from "./components/BookingForm";
 import Footer from "./components/Footer";
 import BecomeWorkerForm from "./components/BecomeWorkerForm";
+import SetUserLocation from "./components/SetUserLocation";
 
 import WorkerLogin from "./components/WorkerLogin";
 import WorkerDashboard from "./pages/WorkerDashboard";
 import UserDashboard from "./pages/UserDashboard";
-
 import UserLogin from "./pages/UserLogin";
-import { services } from "./data/mockdata";
 import UserRegister from "./pages/UserRegister";
+
+import { services } from "./data/mockdata";
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -30,13 +31,16 @@ function App() {
   // ✅ booking submit
   const handleBookingSubmit = async (booking) => {
     try {
-      const res = await fetch("http://localhost:5000/bookings", {
+    const API = import.meta.env.VITE_API_URL;
+      const res = await fetch(`${API}/bookings`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(booking),
       });
 
       const data = await res.json();
+
+      <WorkerList onSelectWorker={setSelectedWorker} />
 
       localStorage.setItem("bookingId", data.booking.id);
       setBookingSuccess(true);
@@ -52,7 +56,7 @@ function App() {
       <Header />
 
       <Routes>
-        {/* ✅ HOME */}
+        {/* ================= HOME ================= */}
         <Route
           path="/"
           element={
@@ -113,7 +117,27 @@ function App() {
           }
         />
 
-        {/* ✅ WORKER LOGIN */}
+        {/* ================= WORKERS PAGE ================= */}
+        {/* 🔴 THIS ROUTE WAS MISSING */}
+        <Route
+          path="/workers"
+          element={
+            <main className="container mx-auto px-4 py-6">
+              <WorkerList
+                selectedCategory={selectedCategory}
+                onSelectWorker={setSelectedWorker}
+              />
+            </main>
+          }
+        />
+
+        {/* ================= USER ================= */}
+        <Route path="/login-user" element={<UserLogin />} />
+        <Route path="/register-user" element={<UserRegister />} />
+        <Route path="/set-location" element={<SetUserLocation />} />
+        <Route path="/user-dashboard/:id" element={<UserDashboard />} />
+
+        {/* ================= WORKER ================= */}
         <Route
           path="/login-worker"
           element={
@@ -123,16 +147,6 @@ function App() {
           }
         />
 
-        <Route path="/login-user" element={<UserLogin />} />
-        <Route path="/register-user" element={<UserRegister />} />
-
-<Route
-  path="/user-dashboard/:id"
-  element={<UserDashboard />}
-/>
-
-
-        {/* ✅ BECOME WORKER */}
         <Route
           path="/become-worker"
           element={
@@ -142,16 +156,9 @@ function App() {
           }
         />
 
-        {/* ✅ WORKER DASHBOARD */}
         <Route
           path="/worker-dashboard/:workerId"
           element={<WorkerDashboard />}
-        />
-
-        {/* ✅ USER DASHBOARD */}
-        <Route
-          path="/user-dashboard/:id"
-          element={<UserDashboard />}
         />
       </Routes>
 

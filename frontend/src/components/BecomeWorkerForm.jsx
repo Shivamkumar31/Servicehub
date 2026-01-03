@@ -1,82 +1,73 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import LocationSearch from "./LocationSearch";
+const API = import.meta.env.VITE_API_URL;
 const BecomeWorkerForm = () => {
   const navigate = useNavigate();
-
   const [form, setForm] = useState({
     name: "",
-    category: "",
     phone: "",
+    category: "",
     experience: "",
     address: "",
     lat: null,
     lng: null,
+    photo: null,
   });
 
-  const getLocation = () => {
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        setForm((prev) => ({
-          ...prev,
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude,
-        }));
-        alert("Location captured ✅");
-      },
-      () => alert("Location permission denied ❌")
-    );
-  };
-
-  const handleSubmit = async (e) => {
+  const submit = async (e) => {
     e.preventDefault();
 
     if (!form.lat || !form.lng) {
-      alert("Please share your location");
+      alert("Please select your location");
       return;
     }
 
-    const res = await fetch("http://localhost:5000/workers/register", {
+    const fd = new FormData();
+    Object.entries(form).forEach(([k, v]) => fd.append(k, v));
+
+    const res = await fetch(`${API}/workers/register`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
+      body: fd,
     });
 
     const data = await res.json();
+    if (!data.success) return alert(data.message);
 
-    // ✅ SAVE LOGGED-IN WORKER
     localStorage.setItem("loggedWorker", JSON.stringify(data.worker));
-
-    // ✅ REDIRECT TO DASHBOARD
     navigate(`/worker-dashboard/${data.worker.id}`);
   };
 
   return (
     <form
-      onSubmit={handleSubmit}
-      className="max-w-md mx-auto p-6 bg-white shadow rounded-lg"
+      onSubmit={submit}
+      className="
+        max-w-md mx-auto
+        p-8 bg-white rounded-xl shadow-lg
+        space-y-4
+      "
     >
-      <h2 className="text-2xl font-bold mb-4">Become a Worker</h2>
+      <h2 className="text-2xl font-bold text-center mb-2">
+        Become a Worker
+      </h2>
 
       <input
+        placeholder="Name"
         required
-        placeholder="Full Name"
-        className="w-full border p-2 mb-3 rounded"
+        className="w-full border rounded-md px-4 py-2 focus:ring-2 focus:ring-blue-500"
         onChange={(e) => setForm({ ...form, name: e.target.value })}
       />
 
-<input
-  required
-  type="tel"
-  placeholder="Phone Number"
-  className="w-full border p-2 mb-3 rounded"
-  onChange={(e) => setForm({ ...form, phone: e.target.value })}
-/>
-
+      <input
+        placeholder="Phone"
+        required
+        className="w-full border rounded-md px-4 py-2 focus:ring-2 focus:ring-blue-500"
+        onChange={(e) => setForm({ ...form, phone: e.target.value })}
+      />
 
       <select
         required
-        className="w-full border p-2 mb-3 rounded"
+        className="w-full border rounded-md px-4 py-2 bg-white focus:ring-2 focus:ring-blue-500"
         onChange={(e) => setForm({ ...form, category: e.target.value })}
       >
         <option value="">Select Service</option>
@@ -89,29 +80,54 @@ const BecomeWorkerForm = () => {
       </select>
 
       <input
-        required
         placeholder="Experience (years)"
-        className="w-full border p-2 mb-3 rounded"
+        required
+        className="w-full border rounded-md px-4 py-2 focus:ring-2 focus:ring-blue-500"
         onChange={(e) => setForm({ ...form, experience: e.target.value })}
       />
 
-      <textarea
-        required
-        placeholder="Full Address"
-        className="w-full border p-2 mb-3 rounded"
-        onChange={(e) => setForm({ ...form, address: e.target.value })}
-      />
+      {/* Location */}
+      <div className="pt-2">
+        <LocationSearch
+          onSelect={(loc) =>
+            setForm({ ...form, address: loc.address, lat: loc.lat, lng: loc.lng })
+          }
+        />
+      </div>
+
+      {/* File Upload */}
+      <div className="pt-2">
+        <label className="block text-sm font-medium mb-1">
+          Profile Photo
+        </label>
+        <input
+          type="file"
+          required
+          accept="image/*"
+          className="
+            w-full text-sm
+            file:mr-4 file:py-2 file:px-4
+            file:rounded-md file:border-0
+            file:bg-blue-600 file:text-white
+            hover:file:bg-blue-700
+          "
+          onChange={(e) =>
+            setForm({ ...form, photo: e.target.files[0] })
+          }
+        />
+      </div>
 
       <button
-        type="button"
-        onClick={getLocation}
-        className="w-full bg-yellow-500 text-white py-2 mb-3 rounded"
+        className="
+          w-full mt-4
+          bg-black text-white
+          py-3 rounded-md
+          font-semibold
+          hover:bg-gray-900
+          transition
+        "
       >
-        Share Location
-      </button>
-
-      <button className="w-full bg-black text-white py-2 rounded">
-        Register / Login as Worker
+        Register
       </button>
     </form>
   );

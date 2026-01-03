@@ -1,65 +1,81 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const WorkerList = ({ selectedCategory, onSelectWorker }) => {
   const [workers, setWorkers] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+  // api url
+const API = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    if (!selectedCategory) return;
+    let url = "";
 
-    setLoading(true);
+    if (loggedUser?.lat && loggedUser?.lng) {
+      url = `${API}/workers/with-distance?lat=${loggedUser.lat}&lng=${loggedUser.lng}`;
+      if (selectedCategory) {
+        url += `&category=${selectedCategory}`;
+      }
+    } else {
+      url = selectedCategory
+        ? `${API}/workers/category/${selectedCategory}`
+        : `${API}/workers`;
+    }
 
-    fetch(`http://localhost:5000/workers/category/${selectedCategory}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setWorkers(data);
-        setLoading(false);
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch workers");
+        return res.json();
       })
-      .catch(() => setLoading(false));
+      .then(setWorkers)
+      .catch(() => setWorkers([]));
   }, [selectedCategory]);
 
-  if (!selectedCategory) return null;
+  if (!workers.length) {
+    return <p className="text-center mt-10 text-gray-500">No workers available</p>;
+  }
 
   return (
-    <div className="mt-6">
-      <h2 className="text-xl font-bold mb-4">
-        Available {selectedCategory} Workers
-      </h2>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
+      {workers.map((w) => (
+        <div
+          key={w.id}
+          onClick={() => onSelectWorker(w)}
+          className="
+            bg-white rounded-xl border border-gray-200
+            p-4 cursor-pointer
+            transition-all duration-300
+            hover:-translate-y-1 hover:shadow-xl
+          "
+        >
+          {/* TOP */}
+          <div className="flex items-center gap-4">
+            <img
+              src={`http://localhost:5000${w.photo}`}
+              alt={w.name}
+              className="w-14 h-14 rounded-full object-cover border"
+            />
 
-      {loading && <p>Loading workers...</p>}
-
-      {!loading && workers.length === 0 && (
-        <p className="text-gray-500">
-          No workers available for this service yet.
-        </p>
-      )}
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {workers.map((w) => (
-          <div
-            key={w.id}
-            onClick={() => onSelectWorker(w)}
-            className="bg-white p-4 rounded-xl shadow hover:shadow-lg transition cursor-pointer"
-          >
-            {/* Image optional — remove if you don’t store it yet */}
-            {w.image && (
-              <img
-                src={w.image}
-                alt={w.name}
-                className="w-full h-32 object-cover rounded-md"
-              />
-            )}
-
-            <h3 className="font-semibold mt-3">{w.name}</h3>
-
-            <p className="text-sm text-gray-600">
-              {w.experience} years experience
-            </p>
-
-            <p className="text-xs text-gray-500 mt-1">{w.address}</p>
+            <div className="flex-1">
+              <h3 className="font-semibold text-gray-900 leading-tight">
+                {w.name}
+              </h3>
+              <p className="text-sm text-gray-500">{w.category}</p>
+            </div>
           </div>
-        ))}
-      </div>
+
+          {/* DISTANCE */}
+          <div className="mt-3">
+            {w.distance ? (
+              <p className="text-sm text-blue-600 font-medium">
+                📍 {w.distance.toFixed(2)} km away
+              </p>
+            ) : (
+              <p className="text-xs text-gray-400">
+                Login to see nearest workers
+              </p>
+            )}
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

@@ -1,59 +1,58 @@
 import React, { useState } from "react";
 import { FaTimes } from "react-icons/fa";
+import LocationSearch from "./LocationSearch";
 
 const BookingForm = ({ worker, onClose, onSubmit }) => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [address, setAddress] = useState("");
+  const [lat, setLat] = useState(null);
+  const [lng, setLng] = useState(null);
   const [notes, setNotes] = useState("");
   const [image, setImage] = useState(null);
 
-
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
 
-  const handleImageSelect = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(URL.createObjectURL(file)); // Show image preview
+  const handleSubmit = () => {
+    if (!loggedUser) {
+      alert("Please login to book a service");
+      return;
     }
+
+    if (!date || !time || !address || !lat || !lng) {
+      alert("Please fill all required fields");
+      return;
+    }
+
+    // ✅ Save USER LOCATION (for distance)
+    const updatedUser = {
+      ...loggedUser,
+      lat,
+      lng,
+      address,
+    };
+    localStorage.setItem("loggedUser", JSON.stringify(updatedUser));
+
+    onSubmit({
+      workerId: worker.id,
+      workerName: worker.name,
+      userId: loggedUser.id,
+      date,
+      time,
+      address,
+      lat,
+      lng,
+      notes,
+      image,
+    });
+
+    onClose();
   };
 
-const handleSubmit = () => {
-if (!loggedUser) {
-    alert("Please login to book a service");
-    return;
-  }
-
-  if (!date || !time || !address) {
-    alert("Please fill all fields!");
-    return;
-  }
-
-  onSubmit({
-    workerId: worker.id,        // ✅ REQUIRED
-    workerName: worker.name,
-   //// UPDATED to include userId
-
-    // ✅ ADD THIS
-    userId: loggedUser.id,
-    date,
-    time,
-    address,
-    notes,
-    image,
-  });
-
-  onClose();
-};
-
   return (
-    // ⭐ FIXED — No more dark background
     <div className="fixed inset-0 bg-black/20 backdrop-blur-md flex items-center justify-center z-50">
+      <div className="bg-white px-8 py-6 rounded-2xl shadow-2xl w-full max-w-md relative">
 
-      {/* Animated Popup Box */}
-      <div className="bg-white px-8 py-6 rounded-2xl shadow-2xl w-full max-w-md animate-scaleIn relative">
-
-        {/* Close Button */}
         <button
           className="absolute right-4 top-4 text-gray-500 hover:text-black"
           onClick={onClose}
@@ -68,81 +67,56 @@ if (!loggedUser) {
         <div className="space-y-4">
 
           {/* DATE */}
-          <div>
-            <label className="font-semibold">Select Date</label>
-            <input
-              type="date"
-              className="w-full border px-3 py-2 rounded-md mt-1 focus:ring-2 focus:ring-blue-500"
-              onChange={(e) => setDate(e.target.value)}
-            />
-          </div>
+          <input
+            type="date"
+            className="w-full border px-3 py-2 rounded-md"
+            onChange={(e) => setDate(e.target.value)}
+          />
 
           {/* TIME */}
-          <div>
-            <label className="font-semibold">Select Time</label>
-            <input
-              type="time"
-              className="w-full border px-3 py-2 rounded-md mt-1 focus:ring-2 focus:ring-blue-500"
-              onChange={(e) => setTime(e.target.value)}
-            />
-          </div>
+          <input
+            type="time"
+            className="w-full border px-3 py-2 rounded-md"
+            onChange={(e) => setTime(e.target.value)}
+          />
 
-          {/* ADDRESS */}
-          <div>
-            <label className="font-semibold">Address</label>
-            <input
-              type="text"
-              placeholder="Your home address"
-              className="w-full border px-3 py-2 rounded-md mt-1 focus:ring-2 focus:ring-blue-500"
-              onChange={(e) => setAddress(e.target.value)}
-            />
-          </div>
+          {/* LOCATION SEARCH */}
+          <LocationSearch
+            onSelect={(loc) => {
+              setAddress(loc.address);
+              setLat(loc.lat);
+              setLng(loc.lng);
+            }}
+          />
 
-          {/* PROBLEM DESCRIPTION */}
-          <div>
-            <label className="font-semibold">Describe the Problem</label>
-            <textarea
-              placeholder="Explain the issue..."
-              className="w-full border px-3 py-2 rounded-md mt-1 h-24 focus:ring-2 focus:ring-blue-500"
-              onChange={(e) => setNotes(e.target.value)}
-            ></textarea>
-          </div>
+          {/* NOTES */}
+          <textarea
+            placeholder="Describe the problem"
+            className="w-full border px-3 py-2 rounded-md h-24"
+            onChange={(e) => setNotes(e.target.value)}
+          />
 
-          {/* IMAGE UPLOAD */}
-          <div>
-            <label className="font-semibold">Upload Problem Image (Optional)</label>
-            <input
-              type="file"
-              accept="image/*"
-              capture="environment"
-              className="w-full mt-1"
-              onChange={handleImageSelect}
-            />
-
-            {/* Image Preview */}
-            {image && (
-              <img
-                src={image}
-                alt="Preview"
-                className="mt-3 w-full h-40 object-cover rounded-md"
-              />
-            )}
-          </div>
-
+          {/* IMAGE */}
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) =>
+              setImage(e.target.files[0])
+            }
+          />
         </div>
 
-        {/* BUTTONS */}
         <div className="flex justify-end mt-6 space-x-3">
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400 transition"
+            className="px-4 py-2 bg-gray-300 rounded-md"
           >
             Cancel
           </button>
 
           <button
             onClick={handleSubmit}
-            className="px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 shadow-md transition"
+            className="px-5 py-2 bg-blue-600 text-white rounded-md"
           >
             Book Now
           </button>
@@ -150,10 +124,6 @@ if (!loggedUser) {
 
       </div>
     </div>
-
-
-
-
   );
 };
 

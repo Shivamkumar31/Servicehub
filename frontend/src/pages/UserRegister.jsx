@@ -1,16 +1,28 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import LocationSearch from "../components/LocationSearch";
+const API = import.meta.env.VITE_API_URL;
 const UserRegister = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+    address: "",
+    lat: null,
+    lng: null,
+  });
+
   const navigate = useNavigate();
 
   const register = async () => {
-    const res = await fetch("http://localhost:5000/users/register", {
+    if (!form.lat || !form.lng) {
+      alert("Please select location");
+      return;
+    }
+
+    const res = await fetch(`${API}/users/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify(form),
     });
 
     const data = await res.json();
@@ -27,17 +39,31 @@ const UserRegister = () => {
       <input
         placeholder="Email"
         className="border p-2 w-full mb-3"
-        onChange={e => setEmail(e.target.value)}
+        onChange={e => setForm({ ...form, email: e.target.value })}
       />
 
       <input
         type="password"
         placeholder="Password"
         className="border p-2 w-full mb-3"
-        onChange={e => setPassword(e.target.value)}
+        onChange={e => setForm({ ...form, password: e.target.value })}
       />
 
-      <button onClick={register} className="w-full bg-black text-white p-2 rounded">
+      <LocationSearch
+        onSelect={loc =>
+          setForm({
+            ...form,
+            address: loc.address,
+            lat: loc.lat,
+            lng: loc.lng,
+          })
+        }
+      />
+
+      <button
+        onClick={register}
+        className="w-full bg-black text-white p-2 rounded"
+      >
         Register
       </button>
     </div>

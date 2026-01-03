@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/helpkart_logo_icon.png";
-
+const API = import.meta.env.VITE_API_URL;
 const Header = () => {
   const [pendingWorkerCount, setPendingWorkerCount] = useState(0);
   const [pendingUserCount, setPendingUserCount] = useState(0);
@@ -24,7 +24,7 @@ const Header = () => {
   useEffect(() => {
     if (!loggedWorker) return;
 
-    fetch(`http://localhost:5000/bookings/worker/${loggedWorker.id}`)
+    fetch(`${API}/bookings/worker/${loggedWorker.id}`)
       .then((res) => res.json())
       .then((data) => {
         const count = data.filter((b) => b.status === "PENDING").length;
@@ -36,7 +36,7 @@ const Header = () => {
   useEffect(() => {
     if (!loggedUser) return;
 
-    fetch(`http://localhost:5000/bookings/user/${loggedUser.id}`)
+    fetch(`${API}/bookings/user/${loggedUser.id}`)
       .then((res) => res.json())
       .then((data) => {
         const count = data.filter((b) => b.status === "ACCEPTED").length;
