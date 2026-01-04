@@ -24,7 +24,12 @@ exports.registerWorker = (req, res) => {
   const { name, phone, category, experience, address, lat, lng } = req.body;
 
   // 👇 image file
-  const photo = req.file ? `/uploads/${req.file.filename}` : null;
+  //const photo = req.file ? `/uploads/${req.file.filename}` : null;
+
+
+  // NEW ✅
+const photo = req.file ? req.file.path : null;
+
 
   if (!name || !phone || !category || !experience || !address || !lat || !lng) {
     return res.status(400).json({ message: "All fields are required" });

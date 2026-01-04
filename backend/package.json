@@ -11,8 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cloudinary": "^1.41.3",
     "cors": "^2.8.5",
     "express": "^5.2.1",
-    "multer": "^2.0.2"
+    "multer": "^2.0.2",
+    "multer-storage-cloudinary": "^4.0.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   }
 }
