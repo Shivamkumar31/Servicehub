@@ -2,9 +2,9 @@
 
  ## This project is a location-based service marketplace where:
 
-👤 Users can register, log in, and book nearby services
-👷 Workers can register and respond to booking requests
-📍 The system connects users with workers based on location
+-- 👤 Users can register, log in, and book nearby services
+--👷 Workers can register and respond to booking requests
+--📍 The system connects users with workers based on location
 
  # The goal is to build a fast, simple, real-world service booking platform.
 
