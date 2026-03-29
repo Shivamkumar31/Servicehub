@@ -17,7 +17,7 @@
 <br/>
 
 <!-- Replace with your actual links -->
-[🌐 Live Demo](#) &nbsp;&nbsp;|&nbsp;&nbsp; [📹 Demo Video](#) &nbsp;&nbsp;|&nbsp;&nbsp; [📄 API Docs](#api-documentation)
+[🌐 Live Demo](https://servicehub-mu.vercel.app/) &nbsp;&nbsp;|&nbsp;&nbsp; [📹 Demo Video](#) &nbsp;&nbsp;|&nbsp;&nbsp; [📄 API Docs](#api-documentation)
 
 </div>
 
@@ -26,6 +26,7 @@
 ## 📌 Table of Contents
 
 - [Overview](#-overview)
+- [Screenshots](#-screenshots)
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
 - [Application Workflow](#-application-workflow)
@@ -43,6 +44,46 @@
 **ServiceConnect** is a location-aware service marketplace that bridges the gap between users who need help and workers ready to provide it. Whether it's plumbing, electrical work, or home repairs — users can discover nearby professionals, book instantly, and track their request in real time.
 
 This project was built to simulate a real-world platform with a focus on clean API design, intuitive UX, and a practical booking lifecycle (Pending → Accepted/Rejected).
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Home / Landing Page
+<!-- Add screenshot here -->
+<img width="1903" height="883" alt="image" src="https://github.com/user-attachments/assets/4bdc1b66-de8e-492d-9fad-1e59a3d679c9" />
+<img width="1889" height="752" alt="image" src="https://github.com/user-attachments/assets/cbea91a8-8f34-46e2-8b73-258cec3118ff" />
+
+
+
+### 🔐 Login / Register
+<!-- Add screenshot here -->
+<img width="1892" height="842" alt="image" src="https://github.com/user-attachments/assets/6a375814-312f-4bc5-b75c-711f278c7822" />
+<img width="1919" height="867" alt="image" src="https://github.com/user-attachments/assets/b19fe6fe-92e3-46f5-a6c5-0d60544116a9" />
+<img width="1919" height="885" alt="image" src="https://github.com/user-attachments/assets/5859ebd8-3b3f-4568-b27a-3bc4b04cfabb" />
+
+
+### 📍 Nearby Workers Listing
+<!-- Add screenshot here -->
+<img width="1889" height="876" alt="image" src="https://github.com/user-attachments/assets/13a10f5c-83ee-4671-b5ce-21f9338f5018" />
+
+
+### 📦 Booking Page
+<!-- Add screenshot here -->
+<img width="1895" height="838" alt="image" src="https://github.com/user-attachments/assets/667c8e86-f3b3-49f3-825a-ed2de0efe891" />
+<img width="1903" height="856" alt="image" src="https://github.com/user-attachments/assets/65ed7870-022e-4695-92fc-256a1adab786" />
+
+
+### ✅ Booking Status / Worker Response
+<!-- Add screenshot here -->
+<img width="1919" height="789" alt="image" src="https://github.com/user-attachments/assets/3a206560-9da4-48dd-ba87-847a100f30b8" />
+<img width="1904" height="887" alt="image" src="https://github.com/user-attachments/assets/7f90f07c-a501-4221-b125-afc0355ca39a" />
+
+
+
+### 📄 Swagger API Docs
+<!-- Add screenshot here -->
+![Swagger Docs](screenshots/swagger-docs.png)
 
 ---
 
@@ -80,216 +121,3 @@ This project was built to simulate a real-world platform with a focus on clean A
 ---
 
 ## 🔁 Application Workflow
-
-```
-User Registers / Logs In
-        │
-        ▼
-  Shares Location (lat, lng)
-        │
-        ▼
-  Nearby Workers Listed
-        │
-        ▼
-  User Selects Worker → Books Service
-        │
-        ▼
-  Worker Gets Notified 🔔
-        │
-        ▼
-  Worker Accepts ✅  or  Rejects ❌
-        │
-        ▼
-  Booking Status Updated for User
-```
-
----
-
-## 📁 Project Structure
-
-```
-service-booking-app/
-│
-├── frontend/                  # React.js client
-│   ├── public/
-│   └── src/
-│       ├── components/        # Reusable UI components
-│       ├── pages/             # Route-level views (Home, Login, Booking, etc.)
-│       ├── services/          # API call functions (axios)
-│       └── App.jsx
-│
-├── backend/                   # Node.js + Express server
-│   ├── routes/                # API route handlers
-│   │   ├── users.js
-│   │   ├── workers.js
-│   │   └── bookings.js
-│   ├── data/                  # JSON-based data store
-│   │   └── db.json
-│   ├── uploads/               # Multer image storage
-│   ├── swagger.js             # OpenAPI config
-│   └── server.js              # App entry point
-│
-└── README.md
-```
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-Make sure you have the following installed:
-
-- [Node.js](https://nodejs.org/) (v16+)
-- npm or yarn
-
----
-
-### 1️⃣ Clone the Repository
-
-```bash
-git clone https://github.com/your-username/service-booking-app.git
-cd service-booking-app
-```
-
----
-
-### 2️⃣ Backend Setup
-
-```bash
-cd backend
-npm install
-npm start
-```
-
-> Server runs at: `http://localhost:5000`
-
----
-
-### 3️⃣ Frontend Setup
-
-```bash
-cd frontend
-npm install
-npm start
-```
-
-> App runs at: `http://localhost:3000`
-
----
-
-## 📄 API Documentation
-
-Interactive Swagger docs are available once the backend is running:
-
-```
-http://localhost:5000/api-docs
-```
-
-### 🔑 Key Endpoints
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/api/users/register` | Register a new user |
-| `POST` | `/api/users/login` | User login |
-| `POST` | `/api/workers/register` | Register a new worker |
-| `GET` | `/api/workers/nearby` | Get workers by location |
-| `POST` | `/api/bookings` | Create a new booking |
-| `PUT` | `/api/bookings/:id/status` | Accept or reject a booking |
-| `GET` | `/api/bookings/:userId` | Get bookings for a user |
-
----
-
-## 🗄️ Data Model
-
-The app uses a flat JSON-based database (ideal for prototyping):
-
-```json
-{
-  "users": [
-    {
-      "id": "u1",
-      "name": "John Doe",
-      "email": "john@example.com",
-      "location": { "lat": 13.08, "lng": 80.27 }
-    }
-  ],
-  "workers": [
-    {
-      "id": "w1",
-      "name": "Ravi Kumar",
-      "category": "Electrician",
-      "contact": "9876543210",
-      "location": { "lat": 13.09, "lng": 80.28 },
-      "profileImage": "uploads/ravi.jpg"
-    }
-  ],
-  "bookings": [
-    {
-      "id": "b1",
-      "userId": "u1",
-      "workerId": "w1",
-      "status": "Pending",
-      "createdAt": "2025-01-01T10:00:00Z"
-    }
-  ]
-}
-```
-
-> ⚠️ **Note:** JSON file storage is used as a lightweight prototype solution. A production version would use a proper database like **MongoDB** or **PostgreSQL**.
-
----
-
-## ☁️ Deployment
-
-| Layer | Platform |
-|---|---|
-| **Frontend** | [Vercel](https://vercel.com/) / [Netlify](https://netlify.com/) |
-| **Backend** | [Render](https://render.com/) / [Railway](https://railway.app/) |
-
-> After deployment, update `REACT_APP_API_URL` in your frontend `.env` to point to the live backend URL.
-
----
-
-## 📚 What I Learned
-
-Working on this project gave me hands-on experience with real-world full-stack development:
-
-- **Full-Stack Architecture** — Designing and connecting a React frontend with an Express REST API
-- **REST API Design** — Structuring clean, resource-based routes with proper HTTP methods
-- **Booking System Logic** — Implementing a stateful booking lifecycle (Pending → Accepted/Rejected)
-- **Location-Based Features** — Using the Geolocation API and filtering workers by proximity
-- **File Upload Handling** — Managing multipart form data with Multer
-- **API Documentation** — Writing OpenAPI 3.0 specs and rendering interactive docs with Swagger UI
-- **Project Structuring** — Organizing a scalable monorepo with clear separation of concerns
-
----
-
-## 🔮 Future Improvements
-
-- [ ] Migrate from JSON file storage → **MongoDB** or **PostgreSQL**
-- [ ] Add **JWT authentication** for secure sessions
-- [ ] Implement **real-time notifications** with WebSockets (Socket.io)
-- [ ] Build a **worker dashboard** to manage bookings
-- [ ] Add **payment gateway** integration
-- [ ] Write **unit & integration tests**
-
----
-
-## 🤝 Connect With Me
-
-> Have feedback or want to collaborate? Feel free to reach out!
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](#)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](#)
-
----
-
-<div align="center">
-
-Made with ❤️ and lots of `console.log()` debugging
-
-⭐ If you found this helpful, consider giving it a star!
-
-</div>
-
